@@ -1,49 +1,17 @@
-
-rooms = {
-    "forest": {
-        "description": "You stand among towering pines. A path leads north and east.",
-        "exits": {"north": "cave", "east": "village"},
-        "items": ["map"]
-    },
-    "cave": {
-        "description": "The cave is cold and damp. Shadows dance on the walls.",
-        "exits": {"south": "forest"},
-        "items": ["sword"]
-    },
-    "village": {
-        "description": "The village is eerily quiet. You hear a stream to the west.",
-        "exits": {"west": "forest"},
-        "items": []
-    }
-}
+from data import ROOMS
+from ui import print_welcome, display_help
 
 current_room = "forest"
 inventory = []
 
-def print_welcome():
-    print("====================================")
-    print("   Welcome to the Forest of Secrets")
-    print("====================================")
-    print("Type 'go [direction]' to move, 'quit' to exit.")
-    print("Available directions: north, south, east, west.")
-    print("Type 'take [item]' to pick up items, 'inventory' to check your items.")
-    print("Your adventure begins now!")
-
-def display_help():
-    print("Available commands:")
-    print("  go [direction] - Move in a direction (north, south, east, west)")
-    print("  take [item] - Pick up an item")
-    print("  inventory - Check your items")
-    print("  quit - Exit the game")
-
 print_welcome()
 
 while True:
-    print("\n" + rooms[current_room]["description"])
+    print("\n" + ROOMS[current_room]["description"])
     
     # Show items in the room
-    if rooms[current_room]["items"]:
-        print("You see:", ", ".join(rooms[current_room]["items"]))
+    if ROOMS[current_room]["items"]:
+        print("You see:", ", ".join(ROOMS[current_room]["items"]))
     
     command = input("> ").strip().lower()
     
@@ -53,16 +21,16 @@ while True:
 
     elif command.startswith("go "):
         direction = command.split(" ")[1]
-        if direction in rooms[current_room]["exits"]:
-            current_room = rooms[current_room]["exits"][direction]
+        if direction in ROOMS[current_room]["exits"]:
+            current_room = ROOMS[current_room]["exits"][direction]
         else:
             print("You can't go that way.")
 
     elif command.startswith("take "):
         item = command.split(" ", 1)[1]
-        if item in rooms[current_room]["items"]:
+        if item in ROOMS[current_room]["items"]:
             inventory.append(item)
-            rooms[current_room]["items"].remove(item)
+            ROOMS[current_room]["items"].remove(item)
             print(f"You picked up the {item}.")
         else:
             print("That item isn't here.")
