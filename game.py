@@ -22,7 +22,18 @@ while True:
     elif command.startswith("go "):
         direction = command.split(" ")[1]
         if direction in ROOMS[current_room]["exits"]:
-            current_room = ROOMS[current_room]["exits"][direction]
+            next_room = ROOMS[current_room]["exits"][direction]
+            
+            # Win/lose conditions when entering the village
+            if next_room == "village":
+                if "sword" in inventory and "map" in inventory:
+                    print("\n🏆 You enter the village, sword at your side and map in hand. You have survived the Forest of Secrets!")
+                    break
+                else:
+                    print("\n💀 You enter the village unprepared. Bandits ambush you, and your adventure ends here.")
+                    break
+
+            current_room = next_room
         else:
             print("You can't go that way.")
 
