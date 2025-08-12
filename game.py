@@ -1,5 +1,6 @@
 from data import ROOMS
 from ui import print_welcome, display_help
+from utils import color_print
 
 current_room = "forest"
 inventory = []
@@ -27,10 +28,10 @@ while True:
             # Win/lose conditions when entering the village
             if next_room == "village":
                 if "sword" in inventory and "map" in inventory:
-                    print("\n🏆 You enter the village, sword at your side and map in hand. You have survived the Forest of Secrets!")
+                    color_print("\n🏆 You enter the village, sword at your side and map in hand. You have survived the Forest of Secrets!", "green")
                     break
                 else:
-                    print("\n💀 You enter the village unprepared. Bandits ambush you, and your adventure ends here.")
+                    color_print("\n💀 You enter the village unprepared. Bandits ambush you, and your adventure ends here.", "red")
                     break
 
             current_room = next_room
