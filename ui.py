@@ -16,8 +16,13 @@ def display_help():
     color_print("  inventory - Check your items", "cyan")
     color_print("  quit - Exit the game", "cyan")
 
-def display_exits(room_exits):
-    """Display available exits in a formatted way."""
+def display_exits(room_exits: dict[str, str]) -> None:
+    """Display available exits in a formatted way.
+    
+    Args:
+        room_exits: Dictionary mapping direction names to destination room names.
+                   Example: {"north": "cave", "east": "village"}
+    """
     if room_exits:
         color_print("Available exits:", "yellow")
         for direction in sorted(room_exits.keys()):
