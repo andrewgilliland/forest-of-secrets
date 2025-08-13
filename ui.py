@@ -15,3 +15,12 @@ def display_help():
     color_print("  take [item] - Pick up an item", "cyan")
     color_print("  inventory - Check your items", "cyan")
     color_print("  quit - Exit the game", "cyan")
+
+def display_exits(room_exits):
+    """Display available exits in a formatted way."""
+    if room_exits:
+        color_print("Available exits:", "yellow")
+        for direction in sorted(room_exits.keys()):
+            color_print(f"  {direction} -> {room_exits[direction]}", "yellow")
+    else:
+        color_print("No exits available.", "red")

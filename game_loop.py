@@ -1,5 +1,5 @@
 from data import ROOMS
-from ui import display_help
+from ui import display_help, display_exits
 from utils import color_print
 
 def game_loop():
@@ -8,6 +8,9 @@ def game_loop():
 
     while True:
         print("\n" + ROOMS[current_room]["description"])
+        
+        # Show available exits
+        display_exits(ROOMS[current_room]["exits"])
         
         # Show items in the room
         if ROOMS[current_room]["items"]:
